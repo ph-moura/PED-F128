@@ -4,6 +4,7 @@
 
 echo "Entre com o nome do arquivo de notas:"
 read file 
+file="$(pwd)/$file"
 echo "Lendo arquivo de notas '$file' ..."
 a1=1
 aluno=[]
@@ -47,6 +48,6 @@ read option
 	do
 		ra=`echo $line | awk -F ' ' '{print $1}'`
 		sed -i "s/[[:blank:]]*$//; /^$ra/ s/$/ ${aluno[$ra]}/" $file
-	done < $file
+	done < $file &&
 	rm  ${file%%.*}.backup
 }
